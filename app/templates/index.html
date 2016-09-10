@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Hello World</title>
-</head>
-<body>
-    <h1>Hello {{user.full_name}}</h1>
-    <p>
-        Your username is {{user.username}}
-    </p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <h1>Hello {{user.full_name}}</h1>
+        <p>
+            Your username is {{user.username}}
+        </p>
+    </div>
+{% endblock %}
