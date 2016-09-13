@@ -1,0 +1,11 @@
+<form action="" method="POST" class="form-inline">
+    <div class="form-group">
+        {{ weather_form.city.label }}
+        {{ weather_form.city(class="form-control", placeholder="Enter City") }}
+    </div>
+    <div class="form-group">
+        {{ weather_form.country_code.label }}
+        {{ weather_form.country_code(class="form-control", placeholder="Example: us") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Get Weather!</button>
+</form>

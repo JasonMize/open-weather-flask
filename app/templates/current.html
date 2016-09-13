@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-    Current Page
+    <h2>Current Weather</h2>
+    <hr>
+    
+    {% include "includes/weather-form.html" %}
+
+     City: {{ weather_form.city.data }}
+    <br>
+    Country Code: {{ weather_form.country_code.data }}
+
 {% endblock %}
