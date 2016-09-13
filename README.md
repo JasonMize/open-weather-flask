@@ -1,9 +1,9 @@
-# Flask Package
+# Open Weather App
 
-Create a flask app as a package and a run script to actually run the application
+Flask app that accesses open weather and returns weather forcasts.
 
 ## Setup
-* `mkvirtualenv -p python3 flask-package`
+* `mkvirtualenv -p python3 open-weather-flask`
 * `pip install -r requirements.txt`
 
 ## Run the flask app
