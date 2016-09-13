@@ -1,5 +1,18 @@
 <form action="" method="POST" class="form-inline">
-    <div class="form-group">
+    {% if weather_form.errors %}
+        {% for key, value in weather_form.errors.items() %}
+            <div class="alert alert-danger">
+                {{ key.title() }}: {{ value[0] }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div 
+        {% if weather_form.city.errors %}
+            class="form-group has-error"
+        {% else %}
+            class="form-group"
+        {% endif %}
+    >
         {{ weather_form.city.label }}
         {{ weather_form.city(class="form-control", placeholder="Enter City") }}
     </div>

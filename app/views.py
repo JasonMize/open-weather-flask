@@ -11,6 +11,8 @@ def index():
 @app.route("/current", methods=["GET", "POST"])
 def current_weather ():
     weather_form = WeatherForm(request.form)
+    if request.method == "POST" and weather_form.validate():
+        pass
 
     return render_template('current.html', 
         weather_form = weather_form)
