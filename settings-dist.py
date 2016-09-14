@@ -1,0 +1,1 @@
+OPEN_WEATHER_API_KEY = "place your open weather api key here"
