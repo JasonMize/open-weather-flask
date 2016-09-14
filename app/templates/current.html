@@ -15,7 +15,12 @@
                         <div class="caption">
                             <h4>
                                 <img src="http://openweathermap.org/img/w/{{ weather_item.icon }}.png" alt="">
-                                {{ weather_item.temp }} &deg;F                                
+                                {{ weather_item.temp }} &deg;
+                                {% if weather_form.units.data == "imperial" %}
+                                    F
+                                {% else %}
+                                    C
+                                {% endif %}
                             </h4>
                             {{ weather_item.description.title() }} on {{ weather_item.dt }}
                             <table class="table table-striped">

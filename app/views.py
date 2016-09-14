@@ -18,7 +18,7 @@ def current_weather ():
         city = weather_form.city.data
         country_code = weather_form.country_code.data
 
-        api = OpenWeatherAPI(app.config["OPEN_WEATHER_API_KEY"])
+        api = OpenWeatherAPI(app.config["OPEN_WEATHER_API_KEY"], weather_form.units.data)
         weather_item = api.get_current_weather(city, country_code)
 
     return render_template('current.html', 
