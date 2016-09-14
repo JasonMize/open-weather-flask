@@ -12,17 +12,17 @@ def index():
 @app.route("/current", methods=["GET", "POST"])
 def current_weather ():
     weather_form = WeatherForm(request.form)
-    result = ""
+    weather_item = None
 
     if request.method == "POST" and weather_form.validate():
         city = weather_form.city.data
         country_code = weather_form.country_code.data
-        
+
         api = OpenWeatherAPI(app.config["OPEN_WEATHER_API_KEY"])
-        result = api.get_current_weather(city, country_code)
+        weather_item = api.get_current_weather(city, country_code)
 
     return render_template('current.html', 
-        weather_form = weather_form, result = result)
+        weather_form = weather_form, weather_item = weather_item)
 
 @app.route("/forecast", methods=["GET", "POST"])
 def forecast_weather ():

@@ -5,11 +5,55 @@
     <hr>
     
     {% include "includes/weather-form.html" %}
-
-     City: {{ weather_form.city.data }}
-    <br>
-    Country Code: {{ weather_form.country_code.data }}
-    <br>
-    Result: {{result}}
+    
+    {% if weather_item %}
+        <div class="weather-container">
+            <h3>Current weather in the city of {{ weather_form.city.data }}</h3>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h4>
+                                <img src="http://openweathermap.org/img/w/{{ weather_item.icon }}.png" alt="">
+                                {{ weather_item.temp }} &deg;F                                
+                            </h4>
+                            {{ weather_item.description.title() }} on {{ weather_item.dt }}
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>Conditions</td>
+                                        <td>{{ weather_item.description }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pressure</td>
+                                        <td>{{ weather_item.pressure }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Humidity</td>
+                                        <td>{{ weather_item.humidity }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wind</td>
+                                        <td>{{ weather_item.wind }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sunrise</td>
+                                        <td>{{ weather_item.sunrise }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sunset</td>
+                                        <td>{{ weather_item.sunset }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 
 {% endblock %}
+
+
+
