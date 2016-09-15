@@ -22,7 +22,7 @@
                                     C
                                 {% endif %}
                             </h4>
-                            {{ weather_item.description.title() }} on {{ weather_item.dt }}
+                            {{ weather_item.description.title() }} on {{ weather_item.dt | timestamp_to_date }}
                             <table class="table table-striped">
                                 <tbody>
                                     <tr>
@@ -43,11 +43,11 @@
                                     </tr>
                                     <tr>
                                         <td>Sunrise</td>
-                                        <td>{{ weather_item.sunrise }}</td>
+                                        <td>{{ weather_item.sunrise | timestamp_to_time}}</td>
                                     </tr>
                                     <tr>
                                         <td>Sunset</td>
-                                        <td>{{ weather_item.sunset }}</td>
+                                        <td>{{ weather_item.sunset | timestamp_to_time }}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, flash
 
 from app import app
 from app.forms import WeatherForm
@@ -18,8 +18,11 @@ def current_weather ():
         city = weather_form.city.data
         country_code = weather_form.country_code.data
 
-        api = OpenWeatherAPI(app.config["OPEN_WEATHER_API_KEY"], weather_form.units.data)
-        weather_item = api.get_current_weather(city, country_code)
+        try:
+            api = OpenWeatherAPI(app.config["OPEN_WEATHER_API_KEY"], weather_form.units.data)
+            weather_item = api.get_current_weather(city, country_code)
+        except ValueError as e:
+            flash(str(e), "warning")
 
     return render_template('current.html', 
         weather_form = weather_form, weather_item = weather_item)
