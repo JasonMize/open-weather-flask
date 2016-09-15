@@ -29,7 +29,27 @@ def current_weather ():
 
 @app.route("/forecast", methods=["GET", "POST"])
 def forecast_weather ():
+
     weather_form = WeatherForm(request.form)
-    return render_template('forecast.html', 
-        weather_form = weather_form)
+    weather_list = None
+
+   if request.method == "POST" and weather_form.validate():
+        city = weather_form.city.data
+        country_code = weather_form.country_code.data
+
+        try:
+            api = OpenWeatherAPI(app.config["OPEN_WEATHER_API_KEY"], weather_form.units.data)
+            weather_list = api.get_daily_weather(city, country_code)
+        except ValueError as e:
+            flash(str(e), "warning")
+
+    return render_template('current.html', 
+        weather_form = weather_form, 
+        weather_list =   weather_list)
+
+
+
+
+
+
 
