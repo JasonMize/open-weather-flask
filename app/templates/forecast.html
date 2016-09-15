@@ -5,6 +5,22 @@
     <hr>
 
     {% include "includes/weather-form.html" %}
-    {{weather_list}}
+
+    {% if weather_list %}
+        <div class="weather-container">
+            <h3>Weather forecast in the city of {{ weather_form.city.data}}</h3>
+        </div>
+        
+        <div class="row">   
+            {% for weather_item in weather_list %}
+
+                <div class="col-md-3">
+                    {%include "includes/daily-weather.html"%}                    
+                </div>
+        
+            {% endfor %}        
+        </div>
+    
+    {% endif %}
 
 {% endblock %}

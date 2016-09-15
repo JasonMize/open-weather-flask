@@ -46,7 +46,7 @@ class OpenWeatherAPI ():
             )
 
 
-    def get_weather_forecast(self, city, country_code="", num_days=16):
+    def get_daily_weather(self, city, country_code="", num_days=16):
         q = ""
 
         if country_code:
@@ -59,7 +59,8 @@ class OpenWeatherAPI ():
         url = "{}{}".format(self.base_url, "/forecast/daily")
         r = requests.get(url, params=payload)
         result = result_or_error(r.json())
-        weather_list []
+        
+        weather_list = []
 
         for item in result["list"]:
             daily_weather = DailyWeather(
@@ -72,21 +73,8 @@ class OpenWeatherAPI ():
                     humidity = item ["humidity"],
                 )
             weather_list.append(daily_weather)
-            
-        return result
 
-        # return  DailyWeather(
-        #         description = result["weather"][0]["description"],
-        #         icon = result["weather"][0]["icon"],
-        #         temp = result["main"] ["temp"], 
-        #         dt = result["dt"],
-        #         wind = result["wind"]["speed"],
-        #         pressure = result ["main"]["pressure"],
-        #         humidity = result ["main"]["humidity"],
-        #         sunrise = result ["sys"]["sunrise"],
-        #         sunset = result ["sys"]["sunset"],
-        #     )        
-
+        return weather_list
 
 
 class DailyWeather ():

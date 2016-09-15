@@ -1,0 +1,60 @@
+<div class="thumbnail">
+    <div class="caption">
+        <h4>
+            <img src="http://openweathermap.org/img/w/{{ weather_item.icon }}.png" alt="">
+            {{ weather_item.temp }} &deg;
+            {% if weather_form.units.data == "imperial" %}
+                F
+            {% else %}
+                C
+            {% endif %}
+            {% if weather_item.temp_night %}
+                / 
+                {{ weather_item.temp_night }} &deg;
+                {% if weather_form.units.data == "imperial" %}
+                    F
+                {% else %}
+                    C
+                {% endif %}
+            {% endif %}
+        </h4>
+        {{ weather_item.description.title() }} on {{ weather_item.dt | timestamp_to_date }}
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td>Conditions</td>
+                    <td>{{ weather_item.description }}</td>
+                </tr>
+                <tr>
+                    <td>Pressure</td>
+                    <td>{{ weather_item.pressure }}</td>
+                </tr>
+                <tr>
+                    <td>Humidity</td>
+                    <td>{{ weather_item.humidity }}</td>
+                </tr>
+                {% if weather_item.wind %}            
+                    <tr>
+                        <td>Wind</td>
+                        <td>{{ weather_item.wind }}</td>
+                    </tr>
+                {% endif %}
+
+                {% if weather_item.sunrise %}
+                    <tr>
+                        <td>Sunrise</td>
+                        <td>{{ weather_item.sunrise | timestamp_to_time}}</td>
+                    </tr>    
+                {% endif %}
+                {% if weather_item.sunset %}
+                    <tr>
+                        <td>Sunset</td>
+                        <td>{{ weather_item.sunset | timestamp_to_time }}</td>
+                    </tr>                    
+                {% endif %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

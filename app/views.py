@@ -33,7 +33,7 @@ def forecast_weather ():
     weather_form = WeatherForm(request.form)
     weather_list = None
 
-   if request.method == "POST" and weather_form.validate():
+    if request.method == "POST" and weather_form.validate():
         city = weather_form.city.data
         country_code = weather_form.country_code.data
 
@@ -43,9 +43,11 @@ def forecast_weather ():
         except ValueError as e:
             flash(str(e), "warning")
 
-    return render_template('current.html', 
+    return render_template(
+        'forecast.html', 
         weather_form = weather_form, 
-        weather_list =   weather_list)
+        weather_list =   weather_list
+        )
 
 
 
